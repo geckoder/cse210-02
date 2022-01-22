@@ -13,3 +13,5 @@ object: points
 collects and displays points from correct and incorrect guesses
 state: current points (for round)
 state: total points (for all game rounds)
+
+So in the dice game from earlier in the week there are two classes: Director and Die. We can probably proceed with just those two classes for the Hilo game, honestly.
