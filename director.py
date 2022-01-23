@@ -11,6 +11,10 @@ class Director:
         self.is_playing = True
         self.score = 0
 
+        for i in range(5):
+            draw = Card()
+            self.card.append(draw)
+
     def start_game(self):
         '''Starts the game by running the main game loop.
         Arg: self'''
