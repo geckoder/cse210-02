@@ -9,17 +9,13 @@ class Director:
         Arg: self'''
 
         # initialize and start the game
-        self.current_card = 0
-        self.next_card = 0
+        self.current_card = Card()
+        self.next_card = Card()
         self.guess = ""
         self.is_playing = True
         self.score = 0
         self.total_score = 300  # we start the game at 300
         # initialize the variables we will use
-
-        self.current_card = Card()
-        self.next_card = Card()
-        # assign classes to the current and next cards using card.py
 
     def start_game(self):
         '''Starts the game by running the main game loop.
@@ -31,13 +27,15 @@ class Director:
             self.show_current_card()
             self.get_guess()
             self.find_score()
-            self.do_outputs()
+            self.outputs()
             self.play_again()
 
     def get_cards(self):
         if not self.is_playing:
             return
-
+        card = Card()
+        card.draw()
+        print(card.current_card)
         # assigns values to the current_card and the next_card using the draw() function on card.py
 
     def show_current_card(self):
@@ -56,14 +54,35 @@ class Director:
         self.guess = input("Higher or lower? [h/l] ")
 
     def find_score(self):
+        '''Determines user's score according to guess input.
+        Arg: self'''
         if not self.is_playing:
             return
 
         # give the user score if they were correct or not
-
         # add the user score, negative or positive, to the total score
+        if self.current_card < self.next_card and self.guess == 'h':
+            self.score += 100
 
-    def do_outputs(self):
+        elif self.current_card > self.next_card and self.guess == 'l':
+            self.score += 100
+
+        elif self.current_card < self.next_card and self.guess == 'l':
+            self.score -= 75
+
+        elif self.current_card > self.next_card and self.guess == 'h':
+            self.score -= 75
+
+    def do_updates(self):
+        """Updates the player's score.
+
+        Args:
+            self (Director): An instance of Director.
+        """
+        if not self.is_playing:
+            return
+
+    def outputs(self):
         '''Show outputs for user.
         Arg: self'''
         if not self.is_playing:
@@ -71,11 +90,12 @@ class Director:
 
         # print the next card value and total score
         print(f"The card is: {}")
+        print(f"Next card was: {}")
         print(f"Your score is: {self.total_score}")
         self.is_playing == (self.score > 0)
 
     def play_again(self):
         '''Determines if user wants to play again.
         Arg: self'''
-        draw_card = input("Play again? [y/n] ")
-        self.is_playing = (draw_card == "y")
+        play = input("Play again? [y/n] ")
+        self.is_playing = (play == "y")
