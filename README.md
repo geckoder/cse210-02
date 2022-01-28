@@ -52,6 +52,6 @@ Emily Castillo
 Michelle Caceres
 Andres Perez
 MyeongSeon Lee
-Andress Rodas
+Andres Rodas
 
 ```
