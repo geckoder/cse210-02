@@ -1,4 +1,4 @@
-from hilo.card import Card
+from card import Card
 
 
 class Director:
@@ -31,18 +31,21 @@ class Director:
             self.play_again()
 
     def get_cards(self):
+        '''Assigns values to the current_card and the next_card using the draw() function '''
         if not self.is_playing:
             return
-        card = Card()
-        card.draw()
-        print(card.current_card)
-        # assigns values to the current_card and the next_card using the draw() function on card.py
+
+        self.current_card.draw()  # already assigned in Card()
+        self.next_card.draw()
 
     def show_current_card(self):
+        '''Prints the current card for the user to see'''
         if not self.is_playing:
             return
 
-        # print the current card for the user to see
+        # current_card is an integer so we need to call random_card
+        # if is a string would be self.current_card
+        print(f"The card is: {self.current_card.random_card}")
 
     def get_guess(self):
         '''Determines if user guesses higher or lower.
@@ -62,25 +65,18 @@ class Director:
         # give the user score if they were correct or not
         # add the user score, negative or positive, to the total score
         if self.current_card < self.next_card and self.guess == 'h':
-            self.score += 100
+            self.score = 100
 
         elif self.current_card > self.next_card and self.guess == 'l':
-            self.score += 100
+            self.score = 100
 
         elif self.current_card < self.next_card and self.guess == 'l':
-            self.score -= 75
+            self.score = -75
 
         elif self.current_card > self.next_card and self.guess == 'h':
-            self.score -= 75
+            self.score = -75
 
-    def do_updates(self):
-        """Updates the player's score.
-
-        Args:
-            self (Director): An instance of Director.
-        """
-        if not self.is_playing:
-            return
+        self.total_score += self.score
 
     def outputs(self):
         '''Show outputs for user.
@@ -89,8 +85,7 @@ class Director:
             return
 
         # print the next card value and total score
-        print(f"The card is: {}")
-        print(f"Next card was: {}")
+        print(f"Next card was: {self.next_card.random_card}")  # like on lines
         print(f"Your score is: {self.total_score}")
         self.is_playing == (self.score > 0)
 
