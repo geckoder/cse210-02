@@ -57,7 +57,7 @@ class Director:
             return
 
         # get the guess of h or l from the user
-        self.guess = input("Higher or lower? [h/l] ")
+        self.guess = input("Higher or lower? [h/l]: ")
 
     def find_score(self):
         '''Determines user's score according to guess input.
@@ -95,5 +95,5 @@ class Director:
     def play_again(self):
         '''Determines if user wants to play again.
         Arg: self'''
-        play = input("Play again? [y/n] ")
+        play = input("Play again? [y/n]: ")
         self.is_playing = (play == "y")
