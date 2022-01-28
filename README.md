@@ -39,6 +39,7 @@ Michelle Caceres
 Andres Perez
 
 ## Team members
+
 Aaron Eardley
 Emily Castillo 
 Michelle Caceres
