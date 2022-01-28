@@ -2,7 +2,8 @@ from card import Card
 
 
 class Director:
-    '''Attributes: current_card(int), next_card(int), is_playing(boolean), score(int), total_score(int)'''
+    '''Control the sequence of the game.
+    Attributes: current_card(), next_card(), guess(string), is_playing(boolean), score(int), total_score(int)'''
 
     def __init__(self):
         '''Constructs new Director
@@ -31,7 +32,8 @@ class Director:
             self.play_again()
 
     def get_cards(self):
-        '''Assigns values to the current_card and the next_card using the draw() function '''
+        '''Assigns values to the current_card and the next_card using the draw() function.
+        Arg: self'''
         if not self.is_playing:
             return
 
@@ -39,7 +41,8 @@ class Director:
         self.next_card.draw()
 
     def show_current_card(self):
-        '''Prints the current card for the user to see'''
+        '''Prints the current card for the user to see.
+        Arg: self'''
         if not self.is_playing:
             return
 
@@ -64,16 +67,16 @@ class Director:
 
         # give the user score if they were correct or not
         # add the user score, negative or positive, to the total score
-        if self.current_card < self.next_card and self.guess == 'h':
+        if self.current_card.random_card < self.next_card.random_card and self.guess == 'h':
             self.score = 100
 
-        elif self.current_card > self.next_card and self.guess == 'l':
+        elif self.current_card.random_card > self.next_card.random_card and self.guess == 'l':
             self.score = 100
 
-        elif self.current_card < self.next_card and self.guess == 'l':
+        elif self.current_card.random_card < self.next_card.random_card and self.guess == 'l':
             self.score = -75
 
-        elif self.current_card > self.next_card and self.guess == 'h':
+        elif self.current_card.random_card > self.next_card.random_card and self.guess == 'h':
             self.score = -75
 
         self.total_score += self.score
